@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/ApiRestFul":{"type":null,"mount_options":["uid=1000","gid=1000"],"guestpath":"/home/vagrant/ApiRestFul","hostpath":"/Users/diego/Documents/proyectos/laravel/ApiRestFul","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/diego/Documents/proyectos/laravel/ApiRestFul","disabled":false,"__vagrantfile":true}}}
