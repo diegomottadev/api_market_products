@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+     protected $table = 'users';
+
     protected $fillable = [
         'name',
          'email', 
@@ -56,7 +60,7 @@ class User extends Authenticatable
         return $this->verified == USER::USUARIO_NO_VERIFICADO;
     }
 
-    public function generarVerificationToken(){
-        return str_random(40);
+    public static function generarVerificationToken(){
+        return Str::random(40);
     }
 }

@@ -3,7 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Category;
+use App\Seller;
+use App\Transaction;
 class Product extends Model
 {
     //
@@ -20,5 +22,18 @@ class Product extends Model
 
     public function estaDisponible(){
         return $this->status=== Product::PRODUCTO_DISPONBLE;
+    }
+
+    public function seller(){
+        return $this->belongsTo(Seller::class);
+    }
+
+
+    public function transactions(){
+        return $this->belongsToMany(Transaction::class);
+    }
+
+    public function categories(){
+        return $this->belongsToMany(Category::class);
     }
 }
