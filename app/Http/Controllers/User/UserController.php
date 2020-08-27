@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\User;
-class UserController extends Controller
+class UserController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         //
         $usuarios = User::all();
-        return response()->json(['data'=>$usuarios],200);
+        return $this->showAll($usuarios);
         
     }
 
@@ -45,7 +45,7 @@ class UserController extends Controller
         $campos['admin'] = User::USUARIO_REGULAR;
         $usuario = User::create($campos);
         
-        return response()->json(['data'=>$usuario],200);
+        return $this->showOne($usuario);
     }
 
     /**
@@ -58,7 +58,8 @@ class UserController extends Controller
     {
         //
         $usuario = User::findOrFail($id);
-        return response()->json(['data'=>$usuario],200);
+    
+        return $this->showOne($usuario);
     }
 
     /**
@@ -111,7 +112,8 @@ class UserController extends Controller
         }
 
         $user->save();
-        return response()->json(['data'=>$user],200);
+
+        return $this->showOne($user);
 
     }
 
@@ -124,5 +126,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        return $this->showOne($user);
     }
 }

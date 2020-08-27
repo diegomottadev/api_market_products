@@ -34,6 +34,24 @@ class User extends Authenticatable
         'admin'
     ];
 
+
+    public function setNameAttribute($valor){
+        return $this->attributes['name']= strtolower($valor);
+
+    }
+
+
+    public function getNameAttribute($valor){
+        return ucwords($valor);
+
+    }
+
+    public function setEmailAttribute($valor){
+        return $this->attributes['email']= strtolower($valor);
+        
+    }
+
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -63,4 +81,5 @@ class User extends Authenticatable
     public static function generarVerificationToken(){
         return Str::random(40);
     }
+
 }
