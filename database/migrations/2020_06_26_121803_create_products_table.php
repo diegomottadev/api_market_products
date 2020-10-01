@@ -23,6 +23,8 @@ class CreateProductsTable extends Migration
             $table->string('image');
             $table->foreignId('seller_id')->constrained('users');;
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

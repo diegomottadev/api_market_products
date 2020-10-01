@@ -17,7 +17,6 @@ class CategoryProductTable extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('product_id')->constrained('products');
-
             $table->timestamps();
         });
     }
