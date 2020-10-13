@@ -17,6 +17,9 @@ class Transaction extends Model
         'product_id'
     ];
 
+    protected $dates = ['deleted_at'];
+
+
     public function buyer(){
 
         return $this->belongsTo(Buyer::class);

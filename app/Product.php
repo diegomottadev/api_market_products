@@ -12,9 +12,10 @@ class Product extends Model
 {
     //
     use SoftDeletes;
-    
+
     const PRODUCTO_DISPONBLE = 'disponible';
     const PRODUCTO_NO_DISPONIBLE = "no disponible";
+    
     protected $fillable =[
         'name',
         'description',
@@ -23,6 +24,9 @@ class Product extends Model
         'image',
         'seller_id'
     ];
+
+    protected $dates = ['deleted_at'];
+
 
     public function estaDisponible(){
         return $this->status=== Product::PRODUCTO_DISPONBLE;
