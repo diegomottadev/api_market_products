@@ -14,7 +14,7 @@ class BuyerProductController extends ApiController
      */
     public function index(Buyer $buyer)
     {
-        //
+        //Obtiene todos los productos de cada transaccion de un buyer
         $products = $buyer->transactions()->with('product')
                     ->get()
                     ->pluck('product');
