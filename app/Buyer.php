@@ -2,19 +2,23 @@
 
 namespace App;
 
-use App\Scopes\BuyerScope;
 use App\Transaction;
+use App\Scopes\BuyerScope;
+use App\Transformers\BuyerTransformer;
 
 class Buyer extends User
 {
-    //Aplicara automaticamente esta restriccion
-    protected static function boot(){
-        parent::boot();
-        static::addGlobalScope(new BuyerScope);
-    }
+	public $transformer = BuyerTransformer::class;
 
+	protected static function boot()
+	{
+		parent::boot();
 
-    public function transactions(){
-        return $this->hasMany(Transaction::class);
+		static::addGlobalScope(new BuyerScope);
+	}
+
+    public function transactions()
+    {
+    	return $this->hasMany(Transaction::class);
     }
 }

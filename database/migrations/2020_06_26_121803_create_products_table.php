@@ -21,11 +21,12 @@ class CreateProductsTable extends Migration
             $table->integer('quantity')->unsigned();
             $table->string('status')->default(Product::PRODUCTO_NO_DISPONIBLE);
             $table->string('image');
-            $table->foreignId('seller_id')->constrained('users');;
+            $table->foreignId('seller_id')->constrained('users');
             $table->timestamps();
             $table->softDeletes();
 
         });
+
     }
 
     /**

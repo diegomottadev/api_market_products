@@ -17,8 +17,12 @@ class CategoryProductTable extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('product_id')->constrained('products');
+            //$table->bigInteger('category_id')->unsigned();
+            //$table->foreign('category_id')->references('id')->on('categories');
+            //$table->bigInteger('product_id')->unsigned();
+            //$table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
-        });
+            });
     }
 
     /**

@@ -14,10 +14,16 @@ class CreateTransactionsTable extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
-            $table->integer('quantity');
+            $table->increments('id');
+            $table->integer('quantity')->unsigned();
             $table->foreignId('buyer_id')->constrained('users');
             $table->foreignId('product_id')->constrained('products');
+
+            // $table->bigInteger('buyer_id')->unsigned();
+            // $table->bigInteger('product_id')->unsigned();
+
+            // $table->foreign('buyer_id')->references('id')->on('users');
+            // $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
             $table->softDeletes();
         });

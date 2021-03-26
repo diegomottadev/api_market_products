@@ -17,7 +17,7 @@ class UserController extends ApiController
         //
         $users = User::all();
         return $this->showAll($users);
-        
+
     }
 
     /**
@@ -44,7 +44,7 @@ class UserController extends ApiController
         $campos['verification_token'] = User::generarVerificationToken();
         $campos['admin'] = User::USUARIO_REGULAR;
         $user = User::create($campos);
-        
+
         return $this->showOne($user);
     }
 
@@ -71,14 +71,14 @@ class UserController extends ApiController
     {
         //
         $rules = [
-            'email' => 'email|unique:users,email,'. $user->id,
+            'email' => 'email|unique:users,email,' ,
             'password' => 'min:6|confirmed',
             'admin' => 'in:' . User::USUARIO_ADMINISTRADOR. ',' . User::USUARIO_REGULAR,
         ];
 
         $this->validate($request, $rules);
 
-        if($request-> statushas('name')){
+        if($request->statushas('name')){
             $user->name = $request->get('name');
         }
 
@@ -88,7 +88,7 @@ class UserController extends ApiController
                 $user->verification_token = User::generarVerificationToken();
                 $user->email = $request->get('email');
 
-            
+
         }
 
         if($request->has('password')){

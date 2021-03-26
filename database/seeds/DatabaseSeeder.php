@@ -6,6 +6,7 @@ use App\Transaction;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,12 +17,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        $tableNames = Schema::getConnection()->getDoctrineSchemaManager()->listTableNames();
+
+        Schema::disableForeignKeyConstraints();
+        foreach ($tableNames as $name) {
+            //if you don't want to truncate migrations
+            if ($name == 'migrations') {
+                continue;
+            }
+            DB::table($name)->truncate();
+        }
         // DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-        // DB::table('categories')->truncante(); 
-        // DB::table('products')->truncante(); 
-        // DB::table('transactions')->truncante(); 
-        // DB::table('users')->truncante(); 
+        // DB::table('categories')->truncante();
+        // DB::table('products')->truncante();
+        // DB::table('transactions')->truncante();
+        // DB::table('users')->truncante();
         // DB::table('category_product')->truncante();
 
         $cantidadUsuarios = 1000;
@@ -39,6 +49,7 @@ class DatabaseSeeder extends Seeder
             }
         );
         factory(Transaction::class,$cantidadTransacciones)->create();
+        Schema::enableForeignKeyConstraints();
 
     }
 }
