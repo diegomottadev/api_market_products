@@ -46,7 +46,7 @@ class ProductCategoryController extends ApiController
     {
         //
         if(!$product->categories->find($category->id)){
-                return $this->errorResponse("La categoría especificada no es una categoría de este producto",404);
+                return $this->errorResponse("La categoría especificada no es una categoría de este producto",409);
         }
 
         $product->categories()->detach([$category->id]);
