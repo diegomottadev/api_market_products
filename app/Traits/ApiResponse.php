@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 // use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 
 trait ApiResponse{
@@ -26,6 +27,8 @@ trait ApiResponse{
         $collection = $this->sortData($collection,$transformer);
         $collection = $this->paginate($collection);
         $collection = $this->transformData($collection,$transformer);
+        $collection = $this->cacheResponse($collection);
+
         return $this->successResponse($collection ,$code);
     }
     protected function showOne(Model $instance,$code= 200){
@@ -81,5 +84,16 @@ trait ApiResponse{
         $paginate  = new LengthAwarePaginator($result,$collection->count(),$perPage,$page,['path'=>LengthAwarePaginator::resolveCurrentPath()]);
         $paginate->appends(request()->all());
         return $paginate;
+    }
+
+    protected function cacheResponse($data){
+        $url = request()->url();
+        $queryParams = request()->query();
+        ksort($queryParams);
+        $queryString = http_build_query($queryParams);
+        $fullUrl = "{$url}?{$queryString}";
+        return Cache::remember($fullUrl,15/60,function()use ($data){
+            return $data;
+        });
     }
 }
