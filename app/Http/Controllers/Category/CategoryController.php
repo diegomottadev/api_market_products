@@ -15,7 +15,7 @@ class CategoryController extends ApiController
      */
     public function index()
     {
-        //
+        //colleciones de eloquent
         $category = Category::all();
         return $this->showAll($category);
     }
