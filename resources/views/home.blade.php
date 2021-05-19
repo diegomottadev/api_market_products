@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    This is the frontend of the API
+                    {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>
