@@ -54,7 +54,7 @@ trait ApiResponse{
         }
         return $collection;
     }
-    //filtro por atributps
+    //filtro por atributos
     protected function filterData(Collection $collection,$transformer ){
         foreach(request()->query() as  $query => $value){
             $attribute = $transformer::originalAttributes($query);

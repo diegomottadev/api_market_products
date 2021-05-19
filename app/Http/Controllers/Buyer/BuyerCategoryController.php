@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Buyer;
 
 use App\Buyer;
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class BuyerCategoryController extends Controller
+class BuyerCategoryController extends ApiController
 {
     /**
      * Display a listing of the resource.

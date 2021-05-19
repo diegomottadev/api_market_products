@@ -30,7 +30,7 @@ Route::resource('sellers','Seller\SellerController',['only'=>['index','show']]);
 Route::resource('sellers.transactions','Seller\SellerTransactionController',['only'=>['index']]);
 Route::resource('sellers.categories','Seller\SellerCategoryController',['only'=>['index']]);
 Route::resource('sellers.buyers','Seller\SellerBuyerController',['only'=>['index']]);
-Route::resource('sellers.products','Seller\SellerProductController',['only'=>['create','show','edit']]);
+Route::resource('sellers.products','Seller\SellerProductController',['only'=>['index','create','show','edit']]);
 
 //Product
 Route::resource('products','Product\ProductController',['only'=>['index','show']]);
