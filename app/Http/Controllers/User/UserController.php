@@ -12,7 +12,7 @@ class UserController extends ApiController
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('transform.input'. UserTransformer::class)->only(['store','update']);
+        $this->middleware('transform.input:'. UserTransformer::class)->only(['store','update']);
     }
     /**
      * Display a listing of the resource.

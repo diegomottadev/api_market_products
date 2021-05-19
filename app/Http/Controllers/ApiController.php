@@ -9,4 +9,9 @@ class ApiController extends Controller
 {
     //
     use ApiResponse;
+
+    public function __construct()
+    {
+
+    }
 }
