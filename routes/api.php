@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Passport\Http\Controllers\AccessTokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,3 +56,10 @@ Route::resource('categories.buyers','Category\CategoryBuyerController',['only'=>
 //User
 Route::resource('users','User\UserController',['except'=>['create','edit']]);
 
+Route::name('verify')->get('users/verify/{token}', 'User\UserController@verify');
+Route::name('resend')->get('users/{user}/resend', 'User\UserController@resend');
+
+Route::post(
+    'oauth/token',
+    [AccessTokenController::class, 'issueToken']
+)->name('passport.tokens.index');
