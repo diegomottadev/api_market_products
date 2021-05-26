@@ -31,7 +31,7 @@ Route::resource('sellers','Seller\SellerController',['only'=>['index','show']]);
 Route::resource('sellers.transactions','Seller\SellerTransactionController',['only'=>['index']]);
 Route::resource('sellers.categories','Seller\SellerCategoryController',['only'=>['index']]);
 Route::resource('sellers.buyers','Seller\SellerBuyerController',['only'=>['index']]);
-Route::resource('sellers.products','Seller\SellerProductController',['only'=>['index','create','show','edit']]);
+Route::resource('sellers.products','Seller\SellerProductController',['only'=>['index','store','show','edit']]);
 
 //Product
 Route::resource('products','Product\ProductController',['only'=>['index','show']]);
@@ -47,14 +47,14 @@ Route::resource('transactions.sellers','Transaction\TransactionSellerController'
 Route::resource('transactions','Transaction\TransactionController',['only'=>['index','show']]);
 //Categories
 
-Route::resource('categories','Category\CategoryController',['except'=>['create','edit']]);
+Route::resource('categories','Category\CategoryController',['except'=>['store','edit']]);
 Route::resource('categories.products','Category\CategoryProductController',['only'=>['index']]);
 Route::resource('categories.sellers','Category\CategorySellerController',['only'=>['index']]);
 Route::resource('categories.transactions','Category\CategoryTransactionController',['only'=>['index']]);
 Route::resource('categories.buyers','Category\CategoryBuyerController',['only'=>['index']]);
 
 //User
-Route::resource('users','User\UserController',['except'=>['create','edit']]);
+Route::resource('users','User\UserController',['except'=>['store','edit']]);
 
 Route::name('verify')->get('users/verify/{token}', 'User\UserController@verify');
 Route::name('resend')->get('users/{user}/resend', 'User\UserController@resend');
