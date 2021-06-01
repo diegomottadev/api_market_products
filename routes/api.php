@@ -54,6 +54,8 @@ Route::resource('categories.transactions','Category\CategoryTransactionControlle
 Route::resource('categories.buyers','Category\CategoryBuyerController',['only'=>['index']]);
 
 //User
+Route::name('me')->get('users/me', 'User\UserController@me');
+
 Route::resource('users','User\UserController',['except'=>['store','edit']]);
 
 Route::name('verify')->get('users/verify/{token}', 'User\UserController@verify');

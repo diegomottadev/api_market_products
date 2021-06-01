@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use App\Traits\ApiResponse;
+use Asm89\Stack\CorsService;
+use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -63,6 +65,15 @@ class Handler extends ExceptionHandler
     // Excepciones relacionadas a peticiones https de cualquier indole
     public function render($request, Throwable $exception)
     {
+
+        $response = $this->handleException($request,$exception);
+        //agrega las cabeceras faltantas al request
+        // app(CorsService::class)->addActualRequestHeaders($response,$request);
+
+        return $response;
+    }
+
+    public function handleException($request, Exception $exception){
         if ($exception instanceof ValidationException){
             return $this->convertValidationExceptionToResponse($exception, $request);
         }
@@ -111,7 +122,6 @@ class Handler extends ExceptionHandler
         return $this->errorResponse("Falla inesperada, Intente luego.",409);
 
     }
-
     protected function convertValidationExceptionToResponse(ValidationException $e, $request)
     {
         $errors = $e->validator->errors()->getMessages();
